@@ -34,3 +34,26 @@
         <input type="button" value="Sonraki Sayfa" class="btn btn-success page" id="btn-sonraki" />
     </div>
 </div>
+
+
+
+@section Scripts{
+    <script>
+        var limit =@ViewBag.Limit;
+        var page = @ViewBag.Page;
+        $("#btn-onceki").click(function () {
+            if (page > 1) {
+                page -= 1;
+                var url = "Products/Index?page=" + page;
+                var url2 = '@Url.Action("Index", "Product", new { page = ViewBag.Page - 1 })';
+                window.location.href = url2;
+            }
+        });
+        $("#btn-sonraki").click(function () {
+            if (page < limit) {
+                var url2 = '@Url.Action("Index", "Product", new { page = ViewBag.Page+1 })';
+                window.location.href = url2;
+            }
+        });
+    </script>
+}

@@ -23,7 +23,7 @@ namespace WM1_WebAppTekrar.Controllers
             var model = _context.Products
                 .Include(x => x.Category)
                 .Include(x => x.Supplier)
-                .OrderBy(x => x.Category.CategoryName)
+                .OrderByDescending(x => x.Category.CategoryName)
                 .ThenBy(x => x.ProductName)
                 .Skip((page.GetValueOrDefault() - 1) * _pageSize)
                 .Take(_pageSize)
@@ -54,6 +54,10 @@ namespace WM1_WebAppTekrar.Controllers
             };
 
             return View(model);
+        }
+        public IActionResult CategoryCreate()
+        {
+            return View();
         }
     }
 }
