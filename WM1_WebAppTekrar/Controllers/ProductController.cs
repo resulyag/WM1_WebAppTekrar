@@ -55,9 +55,11 @@ namespace WM1_WebAppTekrar.Controllers
 
             return View(model);
         }
-        public IActionResult CategoryCreate()
+        public IActionResult ProductlistByCategoryId(int id)
         {
-            return View();
+            var find = _context.Products.Where(x=>x.CategoryId==id);
+
+            return View(find);
         }
     }
 }
